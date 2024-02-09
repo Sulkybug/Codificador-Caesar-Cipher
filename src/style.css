@@ -42,17 +42,17 @@ main {
   }
 }
 
-#text {
+#rotText {
   font-size: 20px;
   color: lightsalmon;
 }
 
-#criptado {
+#output {
   width: 600px;
 }
 
 @media only screen and (max-width: 720px) {
-  #criptado {
+  #output {
     width: 280px;
   }
 }

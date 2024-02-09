@@ -1,4 +1,4 @@
-const caesarCipheralph: string[][] = [
+const alphabet: string[][] = [
   ["A"],
   ["B"],
   ["C"],
@@ -27,57 +27,41 @@ const caesarCipheralph: string[][] = [
   ["Z"],
 ];
 
-const boton = document.querySelector(".add") as HTMLButtonElement;
-const reset = document.querySelector(".subtract") as HTMLButtonElement;
-const rot = document.getElementById("text") as HTMLParagraphElement;
+const addButton = document.querySelector(".add") as HTMLButtonElement;
+const subtractButton = document.querySelector(".subtract") as HTMLButtonElement;
+const rot = document.getElementById("rotText") as HTMLParagraphElement;
 
 let count = 0;
 
-reset?.addEventListener("click", () => {
+subtractButton?.addEventListener("click", () => {
   if (count > 0) {
     count--;
     rot.textContent =
-      count +
-      " " +
-      caesarCipheralph[count % 26] +
-      " - " +
-      caesarCipheralph[(25 + count) % 26];
+      count + " " + alphabet[count % 26] + " - " + alphabet[(25 + count) % 26];
   } else {
     count = 26;
     rot.textContent =
-      count +
-      " " +
-      caesarCipheralph[count % 26] +
-      " - " +
-      caesarCipheralph[(25 + count) % 26];
+      count + " " + alphabet[count % 26] + " - " + alphabet[(25 + count) % 26];
   }
 });
 
-boton.addEventListener("click", () => {
+addButton.addEventListener("click", () => {
   if (count < 26) {
     count++;
     rot.textContent =
-      count +
-      " " +
-      caesarCipheralph[count % 26] +
-      " - " +
-      caesarCipheralph[(25 + count) % 26];
+      count + " " + alphabet[count % 26] + " - " + alphabet[(25 + count) % 26];
   } else {
     count = 0;
     rot.textContent =
-      count +
-      " " +
-      caesarCipheralph[count % 26] +
-      " - " +
-      caesarCipheralph[(25 + count) % 26];
+      count + " " + alphabet[count % 26] + " - " + alphabet[(25 + count) % 26];
   }
 });
 
 const entry = document.querySelector(".entry") as HTMLTextAreaElement;
-let output = document.getElementById("criptado") as HTMLParagraphElement;
-const button2 = document.querySelector(".transform") as HTMLButtonElement;
+let output = document.getElementById("output") as HTMLParagraphElement;
+const encryptButton = document.querySelector(".transform") as HTMLButtonElement;
 
-button2.addEventListener("click", () => {
+encryptButton.addEventListener("click", () => {
   const newValue: string = entry.value;
   let num = count;
 
@@ -91,9 +75,9 @@ button2.addEventListener("click", () => {
         result += newstr[i];
       }
 
-      for (let j = 0; j < caesarCipheralph.length; j++) {
-        if (newstr[i] === caesarCipheralph[j][0]) {
-          result += caesarCipheralph[(j + num) % 26];
+      for (let j = 0; j < alphabet.length; j++) {
+        if (newstr[i] === alphabet[j][0]) {
+          result += alphabet[(j + num) % 26];
         }
       }
     }
@@ -104,9 +88,11 @@ button2.addEventListener("click", () => {
   output.innerText = result;
 });
 
-const boton3 = document.querySelector(".translate") as HTMLButtonElement;
+const translateButton = document.querySelector(
+  ".translate"
+) as HTMLButtonElement;
 
-boton3.addEventListener("click", () => {
+translateButton.addEventListener("click", () => {
   const newValue = entry.value;
   let num = count;
 
@@ -120,9 +106,9 @@ boton3.addEventListener("click", () => {
         result += newstr[i];
       }
 
-      for (let j = 0; j < caesarCipheralph.length; j++) {
-        if (newstr[i] === caesarCipheralph[j][0]) {
-          result += caesarCipheralph[(26 + j - num) % 26];
+      for (let j = 0; j < alphabet.length; j++) {
+        if (newstr[i] === alphabet[j][0]) {
+          result += alphabet[(26 + j - num) % 26];
         }
       }
     }
